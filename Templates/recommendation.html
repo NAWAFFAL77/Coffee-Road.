@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            background-color: #ff9800;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .center {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: black;
+            background-color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .container {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+            transform: scale(1.05);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <div class="center">
+            <a href="{{ url_for('back') }}">Back</a>
+        </div>
+        {% if 'username' in session %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+        <h2>Recommendations for</h2>
+        <form action="/recommendation" method="POST">
+            <label for="category">Select Category:</label>
+            <select id="category" name="category">
+                <option value="study">Study</option>
+                <option value="family">Family</option>
+                <option value="price">Price</option>
+                <option value="service">Service</option>
+            </select>
+            <label for="neighborhood">Select Neighborhood (optional):</label>
+            <select id="neighborhood" name="neighborhood">
+                <option value="">All Neighborhoods</option>
+                <option value="neighborhood1">Neighborhood 1</option>
+                <option value="neighborhood2">Neighborhood 2</option>
+            </select>
+            <button type="submit">Show Recommendations</button>
+        </form>
+    </div>
+</body>
+</html>

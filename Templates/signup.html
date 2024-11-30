@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* تكبير الحقول وتنسيق الحاوية */
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: white;
+        }
+
+        .container img.logo {
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .container input[type="text"],
+        .container input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .container button {
+            width: 100%;
+            padding: 15px;
+            background-color: green;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container button:hover {
+            background-color: darkgreen;
+        }
+
+        .container p {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .container a {
+            color: #00aaff;
+            text-decoration: none;
+        }
+
+        .container a:hover {
+            text-decoration: underline;
+        }
+
+        .container .error {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- إضافة اللوقو -->
+        <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Coffee Road Logo" class="logo">
+        <!-- إضافة الرسالة الترحيبية -->
+        <h2>Welcome to Coffee Road</h2>
+        <!-- نموذج إنشاء حساب -->
+        <form method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="{{ url_for('login') }}">Login here.</a></p>
+        <!-- عرض رسالة خطأ إن وجدت -->
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

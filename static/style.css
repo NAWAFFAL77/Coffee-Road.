@@ -1,0 +1,245 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #333;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #ff9800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    background-color: #444;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    outline: none;
+    background-color: #555;
+    color: #fff;
+    box-shadow: 0 0 5px #00aaff;
+}
+
+input[type="email"],
+input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    background-color: #444;
+    color: #fff;
+    box-shadow: 0 0 5px #00aaff;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+p {
+    margin-top: 20px;
+}
+
+p.error {
+    color: #f00;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+p.success {
+    color: #28a745;
+    font-size: 14px;
+}
+
+a {
+    color: #00aaff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0099ff;
+}
+
+/* Additional styling for labels */
+label {
+    color: #ff9800;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+/* تصميم الجدول */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #444;
+    font-size: 14px;
+}
+
+th {
+    background-color: #222;
+    color: #ff9800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+td {
+    background-color: #333;
+    color: #fff;
+}
+
+tr:nth-child(even) td {
+    background-color: #444;
+}
+
+tr:hover td {
+    background-color: #555;
+    color: #ff9800;
+    cursor: pointer;
+
+/* عنوان الجدول */
+table caption {
+    color: #ff9800;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+/* أزرار الجدول */
+button.table-action {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.table-action:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* تأثيرات عند تمرير الماوس */
+nav a:hover {
+    color: #000; /* لون النص عند التمرير */
+    background-color: #fff; /* خلفية عند التمرير */
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* تأثيرات للجدول */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #333;
+    color: white;
+    border: 1px solid #444;
+}
+
+th {
+    background-color: #ff9800;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #444;
+}
+
+tr:hover {
+    background-color: #555;
+    transition: all 0.3s ease;
+}
+
+/* خلفية الوورد كلاود */
+.wordcloud-container img {
+    background-color: #333; /* خلفية داكنة للوورد كلاود */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* إضافة ظل لتحسين المظهر */
+}
+
+/* خلفية البي تشارت */
+.pie-chart-container img {
+    background-color: #333; /* خلفية داكنة للباي تشارت */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* إضافة ظل لتحسين المظهر */
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Neighborhood</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #ff9800;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        nav {
+            background-color: #ff9800;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: black;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .nav .center {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 80%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            width: 80%;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        a {
+            color: #00aaff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <div class="center">
+            <!-- تفعيل زر الرجوع ليرجع المستخدم للصفحة السابقة -->
+            <a href="{{ request.referrer }}">Back</a>
+        </div>
+        {% if 'username' in session %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        <h1>Select Neighborhood in {{ city }}</h1>
+
+        {% if city == 'Jeddah' %}
+        <img src="/static/jeddah_map.jpg" alt="City Map">
+        {% elif city == 'Riyadh' %}
+        <img src="/static/riyadh_map.jpg" alt="City Map">
+        {% else %}
+        <img src="/static/default_map.jpg" alt="City Map">
+        {% endif %}
+
+        <form method="post">
+            <select name="neighborhood">
+                <option value="" disabled selected>Select Neighborhood</option>
+                {% for neighborhood in neighborhoods %}
+                <option value="{{ neighborhood }}">{{ neighborhood }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Next</button>
+        </form>
+
+        <!-- رابط التوصيات -->
+        <a href="{{ url_for('recommendation') }}">Recommendations</a>
+    </div>
+</body>
+</html>

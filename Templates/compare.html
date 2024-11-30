@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Coffee Shops</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            <nav style="background-color: #ff9800; padding: 10px; text-align: center; font-size: 18px;">
+    <a href="{{ url_for('home') }}" style="color: white; text-decoration: none; margin: 0 15px;">Home</a>
+    <a href="{{ url_for('select_city') }}" style="color: white; text-decoration: none; margin: 0 15px;">Select City</a>
+    <a href="{{ url_for('recommendation') }}" style="color: white; text-decoration: none; margin: 0 15px;">Recommendations</a>
+    {% if 'username' in session %}
+    <a href="{{ url_for('logout') }}" style="color: white; text-decoration: none; margin: 0 15px;">Logout</a>
+    {% else %}
+    <a href="{{ url_for('login') }}" style="color: white; text-decoration: none; margin: 0 15px;">Login</a>
+    {% endif %}
+</nav>
+
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .shop-box {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            width: 48%;
+        }
+        h2, h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Comparison Between {{ shop1 }} and {{ shop2 }}</h2>
+    <div class="container">
+        <div class="shop-box">
+            <h3>{{ shop1 }}</h3>
+            <p><strong>Predicted Rating:</strong> {{ shop1_rating }}</p>
+            <h4>Category Scores</h4>
+            <ul>
+                {% for category, score in shop1_category_scores.items() %}
+                    <li>{{ category.capitalize() }}: {{ score }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="shop-box">
+            <h3>{{ shop2 }}</h3>
+            <p><strong>Predicted Rating:</strong> {{ shop2_rating }}</p>
+            <h4>Category Scores</h4>
+            <ul>
+                {% for category, score in shop2_category_scores.items() %}
+                    <li>{{ category.capitalize() }}: {{ score }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

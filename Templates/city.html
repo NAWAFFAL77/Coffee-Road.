@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your City</title>
+    <style>
+        body {
+            background-color: black;
+            color: #ff9800;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #ff9800;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: black;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .container {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 10px;
+            background-color: #444;
+            color: white;
+            border: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: green;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <div><a href="{{ url_for('back') }}">Back</a></div>
+        {% if 'username' in session %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        <h2>Select Your City</h2>
+        <img src="{{ url_for('static', filename='map.jpg') }}" alt="Map of Saudi Arabia">
+
+        <form method="post">
+            <select name="city" required>
+                <option value="" disabled selected>Select Your City</option>
+                {% for city in cities %}
+                <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Next</button>
+        </form>
+    </div>
+</body>
+</html>

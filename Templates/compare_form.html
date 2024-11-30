@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Coffee Shops to Compare</title>
+</head>
+<body>
+    <h2>Compare Coffee Shops</h2>
+    <form method="POST">
+        <label for="shop1">Select First Coffee Shop:</label>
+        <select id="shop1" name="shop1">
+            {% for shop in shops %}
+                <option value="{{ shop }}">{{ shop }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="shop2">Select Second Coffee Shop:</label>
+        <select id="shop2" name="shop2">
+            {% for shop in shops %}
+                <option value="{{ shop }}">{{ shop }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Compare</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title | default("Coffee Road") }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            color: #ff6347;
+        }
+        form {
+            margin: 20px auto;
+        }
+        input, select {
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+        }
+        .logo img {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Coffee Road Logo">
+    </div>
+    {% block content %}{% endblock %}
+</body>
+</html>

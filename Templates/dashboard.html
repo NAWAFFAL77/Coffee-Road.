@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ shop }} Dashboard</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #ff9800;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .center {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: black;
+            background-color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .container {
+            background-color: #333;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            margin: auto;
+            width: 90%;
+            max-width: 900px;
+        }
+
+        .ratings-overview {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .ratings-overview .section {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        .ratings-overview h3 {
+            margin-bottom: 10px;
+            color: #ff9800;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+            background-color: #333;
+        }
+
+        .pie-chart-container {
+            margin-top: 30px;
+        }
+
+        .pie-chart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            background-color: #333;
+        }
+
+        a {
+            color: #00aaff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .wordcloud-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .wordcloud-container .positive-cloud,
+        .wordcloud-container .negative-cloud {
+            width: 48%;
+            margin-bottom: 20px;
+        }
+
+        .total-comments {
+            text-align: left;
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <div class="center">
+            <!-- زر الرجوع إلى الصفحة السابقة باستخدام الجلسة -->
+            <a href="{{ session.get('previous_page', url_for('home')) }}">Back</a>
+        </div>
+        {% if 'username' in session %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+        <h2>{{ shop }} Dashboard</h2>
+
+        <div class="ratings-overview">
+            <div class="section">
+                <h3>Before</h3>
+                <p><strong>Google Rating:</strong> {{ google_rating }}</p>
+            </div>
+            <div class="section">
+                <h3>Analysis</h3>
+                <p><strong>Positive Reviews:</strong> {{ positive_count }}</p>
+                <p><strong>Neutral Reviews:</strong> {{ neutral_count }}</p>
+                <p><strong>Negative Reviews:</strong> {{ negative_count }}</p>
+            </div>
+            <div class="section">
+                <h3>After Analysis</h3>
+                <p><strong>Predicted Rating:</strong> {{ avg_rating }}</p>
+            </div>
+        </div>
+
+        <!-- Total Comments Section under Analysis -->
+        <div class="total-comments">
+            <h3>Total Comments</h3>
+            <p>{{ total_comments }}</p>
+        </div>
+
+        <!-- Word Cloud Section -->
+        <div class="wordcloud-container">
+            {% if negative_wordcloud %}
+                <div class="negative-cloud">
+                    <h3>Negative Word Cloud</h3>
+                    <img src="data:image/png;base64,{{ negative_wordcloud }}" alt="Negative Word Cloud">
+                </div>
+            {% else %}
+                <p>No negative reviews available.</p>
+            {% endif %}
+
+            {% if positive_wordcloud %}
+                <div class="positive-cloud">
+                    <h3>Positive Word Cloud</h3>
+                    <img src="data:image/png;base64,{{ positive_wordcloud }}" alt="Positive Word Cloud">
+                </div>
+            {% else %}
+                <p>No positive reviews available.</p>
+            {% endif %}
+        </div>
+
+        <!-- Pie Chart Section -->
+        <div class="pie-chart-container">
+            {% if pie_chart %}
+                <h3>Review Sentiment Distribution</h3>
+                <img src="data:image/png;base64,{{ pie_chart }}" alt="Pie Chart">
+            {% else %}
+                <p>No data available for pie chart.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
